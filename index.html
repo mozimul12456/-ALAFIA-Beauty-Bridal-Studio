@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ALAFIA BEAUTY & BRIDAL STUDIO - Where Beauty Meets Elegance. Luxury bridal makeup, skincare, hairstyling, and full salon beauty treatments." />
+  <meta property="og:title" content="ALAFIA BEAUTY & BRIDAL STUDIO | Where Beauty Meets Elegance" />
+  <meta property="og:description" content="From everyday elegance to unforgettable bridal transformations by Alafia." />
+  <meta property="og:type" content="website" />
+  <title>ALAFIA BEAUTY &amp; BRIDAL STUDIO | Where Beauty Meets Elegance</title>
+
+  <!-- Google Fonts: Cormorant Garamond (Luxury Serif), Great Vibes (Cursive), Plus Jakarta Sans (Clean Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & BRAND PALETTE
+       ========================================================================== */
+    :root {
+      --blush-pink: #F8DDE3;
+      --blush-soft: #FDF2F4;
+      --cream: #FFF9F4;
+      --rose-gold: #B76E79;
+      --rose-gold-dark: #9B545F;
+      --champagne: #E8C7A8;
+      --burgundy: #542B38;
+      --burgundy-light: #723E4E;
+      --white: #FFFFFF;
+      --text-main: #3A2229;
+      --text-muted: #6E525A;
+      --border-soft: rgba(183, 110, 121, 0.22);
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-cursive: 'Great Vibes', cursive;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --shadow-sm: 0 4px 14px rgba(84, 43, 56, 0.06);
+      --shadow-md: 0 10px 30px rgba(84, 43, 56, 0.09);
+      --shadow-lg: 0 18px 42px rgba(84, 43, 56, 0.14);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+
+      --transition: 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ==========================================================================
+       2. MOBILE-FIRST RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--cream);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--rose-gold);
+      outline-offset: 3px;
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .custom-cursor, .cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       3. CUSTOM ROSE-GOLD CIRCULAR CURSOR & TOUCH RIPPLE EFFECT
+       ========================================================================== */
+    .custom-cursor,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.25s ease, width 0.25s ease, height 0.25s ease, background-color 0.25s ease;
+    }
+
+    .custom-cursor {
+      width: 6px;
+      height: 6px;
+      background-color: var(--rose-gold);
+      box-shadow: 0 0 6px rgba(183, 110, 121, 0.6);
+    }
+
+    .cursor-ring {
+      width: 22px;
+      height: 22px;
+      border: 1.25px solid var(--rose-gold);
+      background-color: rgba(248, 221, 227, 0.12);
+      backdrop-filter: blur(1px);
+    }
+
+    .cursor-ring.hover-active {
+      width: 32px;
+      height: 32px;
+      border-color: var(--burgundy);
+      background-color: rgba(183, 110, 121, 0.14);
+    }
+
+    .touch-ripple {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rose-gold);
+      background: radial-gradient(circle, rgba(248, 221, 227, 0.45) 0%, rgba(183, 110, 121, 0) 70%);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%) scale(0.4);
+      animation: rippleBloom 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes rippleBloom {
+      0% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(0.4);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.6);
+      }
+    }
+
+    /* Hide custom cursor on touch-primary devices */
+    @media (hover: none) and (pointer: coarse) {
+      .custom-cursor, .cursor-ring {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       4. LAYOUT CONTAINERS & TYPOGRAPHY (CLAMP MOBILE-FIRST)
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: 16px;
+    }
+
+    @media (min-width: 480px) {
+      .container {
+        padding-inline: 22px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        padding-inline: 32px;
+      }
+    }
+
+    .section {
+      padding-block: 52px;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding-block: 76px;
+      }
+    }
+
+    .bg-blush {
+      background-color: var(--blush-soft);
+    }
+
+    .bg-blush-rich {
+      background: linear-gradient(135deg, var(--blush-pink) 0%, var(--cream) 100%);
+    }
+
+    .cursive-accent {
+      font-family: var(--font-cursive);
+      color: var(--rose-gold);
+      font-size: clamp(1.75rem, 4.8vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      color: var(--burgundy);
+      font-size: clamp(1.85rem, 5.2vw, 2.95rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: clamp(0.95rem, 2.4vw, 1.08rem);
+      max-width: 640px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-header .section-subtitle {
+      margin-inline: auto;
+    }
+
+    /* ==========================================================================
+       5. BUTTONS & SUB-PAGE BACK BAR (TOUCH-OPTIMIZED >= 48px HEIGHT)
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), color var(--transition);
+      text-align: center;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-light) 100%);
+      color: var(--white);
+      box-shadow: 0 8px 20px rgba(84, 43, 56, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--rose-gold) 0%, var(--burgundy) 100%);
+      box-shadow: 0 10px 24px rgba(183, 110, 121, 0.34);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: var(--white);
+      color: var(--burgundy);
+      border: 1.5px solid var(--rose-gold);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--blush-pink);
+      border-color: var(--burgundy);
+      transform: translateY(-2px);
+    }
+
+    .btn-rosegold {
+      background: linear-gradient(135deg, var(--rose-gold) 0%, var(--rose-gold-dark) 100%);
+      color: var(--white);
+      box-shadow: 0 8px 18px rgba(183, 110, 121, 0.25);
+    }
+
+    .btn-rosegold:hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* Clean Pill-Shaped Back Button Bar for Sub-Pages */
+    .subpage-back-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 44px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      background-color: var(--white);
+      color: var(--burgundy);
+      border: 1px solid var(--border-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-back:hover {
+      background-color: var(--blush-pink);
+      border-color: var(--rose-gold);
+      transform: translateX(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-back:active {
+      transform: scale(0.97);
+    }
+
+    /* ==========================================================================
+       6. ANNOUNCEMENT BAR & MOBILE-FIRST STICKY NAVIGATION
+       ========================================================================== */
+    .announcement-bar {
+      background-color: var(--burgundy);
+      color: var(--cream);
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      padding: 8px 14px;
+      font-weight: 500;
+    }
+
+    @media (min-width: 480px) {
+      .announcement-bar {
+        font-size: 0.84rem;
+      }
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(255, 249, 244, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      transition: box-shadow var(--transition);
+    }
+
+    .site-header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 66px;
+      gap: 10px;
+    }
+
+    /* Compact Mobile Logo */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .brand-monogram {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blush-pink), var(--champagne));
+      border: 1.5px solid var(--rose-gold);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--burgundy);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      color: var(--burgundy);
+    }
+
+    .brand-sub {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose-gold-dark);
+      font-weight: 600;
+    }
+
+    @media (min-width: 480px) {
+      .brand-name {
+        font-size: 1.3rem;
+      }
+      .brand-sub {
+        font-size: 0.68rem;
+      }
+    }
+
+    /* Mobile Hamburger Button */
+    .hamburger-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-soft);
+      background-color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--burgundy);
+      border-radius: 2px;
+      transition: transform 0.28s ease, opacity 0.2s ease;
+    }
+
+    .hamburger-btn[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-btn[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Slide-Down Navigation Drawer */
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 67px;
+      left: 0;
+      right: 0;
+      max-height: calc(100dvh - 67px);
+      overflow-y: auto;
+      background-color: var(--cream);
+      border-bottom: 2px solid var(--rose-gold);
+      box-shadow: var(--shadow-lg);
+      padding: 18px 20px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transform: translateY(-115%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, visibility 0.34s;
+      z-index: 999;
+    }
+
+    .mobile-nav-drawer.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      color: var(--burgundy);
+      font-size: 1.02rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background-color: var(--blush-pink);
+      color: var(--burgundy);
+    }
+
+    .mobile-nav-cta {
+      margin-top: 12px;
+    }
+
+    /* Desktop Navigation (1024px+) */
+    .desktop-nav {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .hamburger-btn,
+      .mobile-nav-drawer {
+        display: none !important;
+      }
+
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .desktop-nav-link {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--text-main);
+        padding: 8px 4px;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+
+      .desktop-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 2px;
+        width: 0;
+        height: 2px;
+        background-color: var(--rose-gold);
+        transition: width 0.25s ease;
+      }
+
+      .desktop-nav-link:hover,
+      .desktop-nav-link.active {
+        color: var(--burgundy);
+      }
+
+      .desktop-nav-link:hover::after,
+      .desktop-nav-link.active::after {
+        width: 100%;
+      }
+    }
+
+    /* ==========================================================================
+       7. SPA MULTI-PAGE VIEW TRANSITIONS
+       ========================================================================== */
+    .page-view {
+      display: none;
+      animation: fadePageIn 0.35s ease forwards;
+    }
+
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes fadePageIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================================================================
+       8. HERO SECTION (MOBILE-FIRST: NO OVERLAPPING TEXT OVER FACE)
+       ========================================================================== */
+    .hero {
+      background: linear-gradient(180deg, var(--blush-soft) 0%, var(--cream) 100%);
+      padding-block: 28px 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .hero-media {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 3px solid var(--white);
+      aspect-ratio: 4 / 5;
+      max-height: 460px;
+      width: 100%;
+      margin-inline: auto;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--white);
+      border: 1px solid var(--border-soft);
+      color: var(--rose-gold-dark);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 7vw, 3.85rem);
+      font-weight: 700;
+      color: var(--burgundy);
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.98rem, 2.7vw, 1.15rem);
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (min-width: 480px) {
+      .hero-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .hero-actions .btn {
+        flex: 1 1 auto;
+        max-width: 230px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding-block: 48px 68px;
+      }
+      .hero-grid {
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 40px;
+      }
+      .hero-content {
+        order: 1;
+      }
+      .hero-media {
+        order: 2;
+        max-height: 560px;
+      }
+    }
+
+    /* ==========================================================================
+       9. CARDS & RESPONSIVE GRIDS (MOBILE 1-2 COL -> DESKTOP 3-4 COL)
+       ========================================================================== */
+    .grid-2-mobile {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 360px) {
+      .grid-2-mobile {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .grid-2-mobile {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-2-mobile {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+    }
+
+    .service-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card-img {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      overflow: hidden;
+      background-color: var(--blush-pink);
+    }
+
+    .service-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-card-img img {
+      transform: scale(1.05);
+    }
+
+    .service-card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .service-card-body {
+        padding: 18px;
+      }
+    }
+
+    .service-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--rose-gold-dark);
+      margin-bottom: 4px;
+    }
+
+    .service-card-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 3.2vw, 1.42rem);
+      font-weight: 700;
+      color: var(--burgundy);
+      line-height: 1.22;
+      margin-bottom: 6px;
+    }
+
+    .service-card-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+    }
+
+    .service-card-footer {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pricing-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--burgundy);
+      background-color: var(--blush-soft);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      align-self: flex-start;
+    }
+
+    .btn-card {
+      width: 100%;
+      min-height: 42px;
+      padding: 8px 12px;
+      font-size: 0.84rem;
+    }
+
+    /* ==========================================================================
+       10. ABOUT ALAFIA SECTION & STORY LAYOUT
+       ========================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 44px;
+      }
+    }
+
+    .about-portrait {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      max-height: 500px;
+      margin-inline: auto;
+      border: 4px solid var(--white);
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pillar-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-block: 20px 26px;
+    }
+
+    @media (min-width: 480px) {
+      .pillar-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .pillar-item {
+      background-color: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .pillar-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: var(--blush-pink);
+      color: var(--burgundy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .pillar-item h4 {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      color: var(--burgundy);
+      margin-bottom: 2px;
+    }
+
+    .pillar-item p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       11. BRIDAL SHOWCASE & TESTIMONIALS
+       ========================================================================== */
+    .bridal-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .bridal-showcase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+    }
+
+    .bridal-look-card {
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bridal-look-img {
+      aspect-ratio: 3 / 4;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .bridal-look-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .bridal-look-info {
+      padding: 18px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonial-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      background-color: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stars {
+      color: var(--rose-gold);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .sample-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      background-color: var(--blush-soft);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      margin-top: 10px;
+    }
+
+    /* ==========================================================================
+       12. FILTERABLE GALLERY & MOBILE-FRIENDLY LIGHTBOX
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .filter-btn {
+      min-height: 42px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-soft);
+      background-color: var(--white);
+      color: var(--burgundy);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.22s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background-color: var(--burgundy);
+      color: var(--white);
+      border-color: var(--burgundy);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      background-color: var(--blush-pink);
+      border: 1px solid var(--border-soft);
+      cursor: pointer;
+    }
+
+    .gallery-item.hidden {
+      display: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(58, 34, 41, 0.86), transparent);
+      color: var(--white);
+      padding: 22px 12px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(34, 18, 23, 0.92);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      background-color: var(--cream);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lightbox-inner img {
+      width: 100%;
+      max-height: 72dvh;
+      object-fit: cover;
+    }
+
+    .lightbox-meta {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: var(--burgundy);
+      color: var(--white);
+      font-size: 1.35rem;
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ==========================================================================
+       13. FORMS (FULL-WIDTH MOBILE, LARGE TAP TARGETS, CLEAR VALIDATION)
+       ========================================================================== */
+    .form-card {
+      background-color: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      box-shadow: var(--shadow-md);
+      max-width: 680px;
+      margin-inline: auto;
+    }
+
+    @media (min-width: 768px) {
+      .form-card {
+        padding: 36px 34px;
+      }
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--burgundy);
+    }
+
+    .form-control {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border-soft);
+      background-color: var(--cream);
+      color: var(--text-main);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--rose-gold);
+      background-color: var(--white);
+    }
+
+    textarea.form-control {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .error-msg {
+      color: #B42318;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-group.has-error .error-msg {
+      display: block;
+    }
+
+    .form-group.has-error .form-control {
+      border-color: #B42318;
+    }
+
+    .confirmation-box {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background-color: var(--blush-soft);
+      border: 1.5px solid var(--rose-gold);
+      color: var(--burgundy);
+    }
+
+    .confirmation-box.show {
+      display: block;
+    }
+
+    /* ==========================================================================
+       14. CONTACT PAGE & FLOATING ONE-HAND WHATSAPP BUTTON
+       ========================================================================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) {
+      .contact-layout {
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 32px;
+      }
+    }
+
+    .info-card {
+      background-color: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--blush-pink);
+      color: var(--burgundy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .map-placeholder {
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--blush-pink), var(--champagne));
+      border: 1px dashed var(--rose-gold);
+      padding: 28px 18px;
+      text-align: center;
+      color: var(--burgundy);
+    }
+
+    .floating-gmail {
+      position: fixed;
+      right: 18px;
+      bottom: 20px;
+      z-index: 950;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background-color: var(--white);
+      color: var(--burgundy);
+      border: 1.5px solid var(--border-soft);
+      min-height: 48px;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .floating-gmail:hover {
+      transform: translateY(-3px);
+      border-color: var(--rose-gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ==========================================================================
+       15. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--burgundy);
+      color: var(--cream);
+      padding-block: 48px 92px; /* Extra bottom padding for floating Gmail on mobile */
+    }
+
+    .floating-whatsapp:hover {
+      transform: translateY(-3px);
+    }
+
+    /* ==========================================================================
+       15. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--burgundy);
+      color: var(--cream);
+      padding-block: 48px 92px; /* Extra bottom padding for floating WhatsApp on mobile */
+    }
+
+    @media (min-width: 768px) {
+      .site-footer {
+        padding-block: 58px 42px;
+      }
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    .footer-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--champagne);
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 249, 244, 0.85);
+      font-size: 0.92rem;
+      padding-block: 3px;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--champagne);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 249, 244, 0.16);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255, 249, 244, 0.72);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Rose-Gold Circular Cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ✨ Bridal &amp; Festive Bookings Open • Bespoke Consultations with Alafia ✨
+  </div>
+
+  <!-- Sticky Mobile-First Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrapper">
+      <a href="#home" class="brand-logo" data-route="home" aria-label="ALAFIA BEAUTY & BRIDAL STUDIO Home">
+        <span class="brand-monogram">A</span>
+        <span class="brand-text">
+          <span class="brand-name">ALAFIA</span>
+          <span class="brand-sub">Beauty &amp; Bridal Studio</span>
+        </span>
+      </a>
+
+      <!-- Desktop Horizontal Nav -->
+      <nav class="desktop-nav" aria-label="Primary Desktop Navigation">
+        <a href="#home" class="desktop-nav-link active" data-route="home">Home</a>
+        <a href="#services" class="desktop-nav-link" data-route="services">Services</a>
+        <a href="#bridal" class="desktop-nav-link" data-route="bridal">Bridal Makeup</a>
+        <a href="#about" class="desktop-nav-link" data-route="about">About Alafia</a>
+        <a href="#gallery" class="desktop-nav-link" data-route="gallery">Gallery</a>
+        <a href="#contact" class="desktop-nav-link" data-route="contact">Contact</a>
+        <a href="#appointment" class="btn btn-primary" data-route="appointment">Book Appointment</a>
+      </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Slide-Down Navigation Drawer -->
+    <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+      <a href="#home" class="mobile-nav-link active" data-route="home">Home <span>→</span></a>
+      <a href="#services" class="mobile-nav-link" data-route="services">Services <span>→</span></a>
+      <a href="#bridal" class="mobile-nav-link" data-route="bridal">Bridal Makeup <span>→</span></a>
+      <a href="#about" class="mobile-nav-link" data-route="about">About Alafia <span>→</span></a>
+      <a href="#gallery" class="mobile-nav-link" data-route="gallery">Gallery <span>→</span></a>
+      <a href="#contact" class="mobile-nav-link" data-route="contact">Contact <span>→</span></a>
+      <a href="#appointment" class="btn btn-primary btn-full mobile-nav-cta" data-route="appointment">Book Appointment</a>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ========================================================================
+         PAGE 1: HOME
+         ======================================================================== -->
+    <section class="page-view active" id="page-home" aria-label="Home">
+      <!-- Mobile-First Hero Section -->
+      <div class="hero">
+        <div class="container hero-grid">
+          <div class="hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?auto=format&fit=crop&w=900&q=80"
+              alt="Radiant Indian bride in traditional bridal lehenga and luxury makeup at Alafia Beauty & Bridal Studio"
+              width="900"
+              height="1125"
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="hero-content">
+            <span class="hero-badge">Where Beauty Meets Elegance</span>
+            <h1 class="hero-title">Your Beauty, Our Passion.</h1>
+            <p class="hero-subtitle">
+              From everyday elegance to unforgettable bridal transformations. Experience bespoke makeup artistry, radiant skincare, and complete salon luxury tailored exclusively for you.
+            </p>
+            <div class="hero-actions">
+              <a href="#appointment" class="btn btn-primary" data-route="appointment">Book Appointment</a>
+              <a href="#services" class="btn btn-outline" data-route="services">Explore Services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Services Preview -->
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="cursive-accent">Signature Artistry</span>
+            <h2 class="section-title">Featured Beauty &amp; Bridal Services</h2>
+            <p class="section-subtitle">Curated makeup, skincare, and hair treatments crafted with skin-loving luxury products.</p>
+          </div>
+
+          <div class="grid-2-mobile" id="homeFeaturedGrid"></div>
+
+          <div style="text-align: center; margin-top: 32px;">
+            <a href="#services" class="btn btn-outline" data-route="services">View All 23 Salon Services</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Alafia Preview -->
+      <div class="section bg-blush">
+        <div class="container about-grid">
+          <div class="about-portrait">
+            <img
+              src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
+              alt="Alafia Beauty & Bridal Studio luxury makeup artistry"
+              width="800"
+              height="1000"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <span class="cursive-accent">Meet the Founder</span>
+            <h2 class="section-title">Beauty is an Art, and Every Woman is a Masterpiece.</h2>
+            <p style="margin-bottom: 14px; color: var(--text-muted);">
+              Welcome to <strong>ALAFIA BEAUTY &amp; BRIDAL STUDIO</strong>—a warm, hygienic, and serene beauty sanctuary founded by <strong>Alafia</strong>. Driven by a deep passion for beauty and personal care, Alafia has mastered the complete spectrum of parlour artistry—from luminous HD bridal transformations to rejuvenating facials, precision threading, hair spa rituals, manicure-pedicure care, and intricate mehndi.
+            </p>
+            <p style="margin-bottom: 22px; color: var(--text-muted);">
+              Her dream has always been to create a refined studio where every woman feels heard, pampered, and effortlessly confident in her natural glow.
+            </p>
+            <a href="#about" class="btn btn-primary" data-route="about">Read Alafia’s Story</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bridal Makeup Showcase Preview -->
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="cursive-accent">Royal Transformations</span>
+            <h2 class="section-title">The Bridal Atelier</h2>
+            <p class="section-subtitle">Timeless traditional bridal grace blended with modern, skin-like luminous finishes.</p>
+          </div>
+
+          <div class="bridal-showcase-grid">
+            <article class="bridal-look-card">
+              <div class="bridal-look-img">
+                <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=80" alt="Traditional Indian Bridal Makeup" width="700" height="933" loading="lazy" />
+              </div>
+              <div class="bridal-look-info">
+                <span class="service-tag">Signature Bridal</span>
+                <h3 class="service-card-title">Traditional Indian Bridal</h3>
+                <p class="service-card-desc">Classic crimson lips, kohl-rimmed eyes, and rich golden-hour radiance designed for wedding rituals.</p>
+              </div>
+            </article>
+
+            <article class="bridal-look-card">
+              <div class="bridal-look-img">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="HD Bridal Makeup" width="700" height="933" loading="lazy" />
+              </div>
+              <div class="bridal-look-info">
+                <span class="service-tag">Camera-Ready Glow</span>
+                <h3 class="service-card-title">HD Bridal Makeup</h3>
+                <p class="service-card-desc">Feather-light, breathable high-definition base that looks flawless in person and 4K wedding photography.</p>
+              </div>
+            </article>
+
+            <article class="bridal-look-card">
+              <div class="bridal-look-img">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Engagement & Reception Glam" width="700" height="933" loading="lazy" />
+              </div>
+              <div class="bridal-look-info">
+                <span class="service-tag">Celebration Glam</span>
+                <h3 class="service-card-title">Engagement &amp; Reception</h3>
+                <p class="service-card-desc">Soft rose-gold shimmer, sculpted cheekbones, and romantic floral hairstyling for your pre- and post-wedding events.</p>
+              </div>
+            </article>
+          </div>
+
+          <div style="text-align: center; margin-top: 30px;">
+            <a href="#bridal" class="btn btn-rosegold" data-route="bridal">Explore Bridal Packages</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio Preview -->
+      <div class="section bg-blush">
+        <div class="container">
+          <div class="section-header">
+            <span class="cursive-accent">Lookbook</span>
+            <h2 class="section-title">Beauty Portfolio &amp; Instagram Moments</h2>
+            <p class="section-subtitle">Tap any look to inspect details up close.</p>
+          </div>
+
+          <div class="gallery-grid" id="homePreviewGallery"></div>
+
+          <div style="text-align: center; margin-top: 28px;">
+            <a href="#gallery" class="btn btn-outline" data-route="gallery">Open Full Gallery</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client Testimonials (Clearly marked as sample content) -->
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="cursive-accent">Kind Words</span>
+            <h2 class="section-title">Client Love &amp; Experiences</h2>
+            <p class="section-subtitle">Illustrative client stories showcasing the care and dedication you can expect at our studio.</p>
+          </div>
+
+          <div class="testimonial-grid">
+            <div class="testimonial-card">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="service-card-desc">“Alafia made me feel so calm on my wedding morning. My HD bridal makeup felt weightless and stayed fresh until the very end of the ceremony.”</p>
+              <strong style="display:block; margin-top:12px; color:var(--burgundy);">— Aanya R. (Bridal Client)</strong>
+              <span class="sample-tag">Sample Testimonial</span>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="service-card-desc">“From eyebrow shaping and glow facials to party hairstyling, Alafia knows every salon treatment inside out. Truly hygienic and welcoming!”</p>
+              <strong style="display:block; margin-top:12px; color:var(--burgundy);">— Meera K. (Regular Salon Guest)</strong>
+              <span class="sample-tag">Sample Testimonial</span>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="service-card-desc">“Booked my engagement makeup and bridal mehndi here. The rose-gold eye look matched my lehenga effortlessly.”</p>
+              <strong style="display:block; margin-top:12px; color:var(--burgundy);">— Zoya S. (Engagement Client)</strong>
+              <span class="sample-tag">Sample Testimonial</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Booking CTA -->
+      <div class="section bg-blush-rich">
+        <div class="container" style="text-align: center;">
+          <span class="cursive-accent">Begin Your Glow</span>
+          <h2 class="section-title">Ready for Your Transformation?</h2>
+          <p class="section-subtitle" style="margin-inline: auto; margin-bottom: 24px;">
+            Reserve your bridal trial, festive makeover, or relaxing salon ritual with Alafia today.
+          </p>
+          <a href="#appointment" class="btn btn-primary" data-route="appointment">Book Your Appointment Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 2: SERVICES
+         ======================================================================== -->
+    <section class="page-view" id="page-services" aria-label="Services">
+      <div class="section bg-blush-rich" style="padding-block: 28px 38px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+          <div style="text-align: center;">
+            <span class="cursive-accent">Complete Salon Menu</span>
+            <h1 class="section-title">Our Beauty, Hair &amp; Makeup Services</h1>
+            <p class="section-subtitle" style="margin-inline: auto;">
+              Every service is customized to your skin tone, hair texture, and occasion. Tap any service to request a personalized quote or book your slot.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <!-- Category 1: MAKEUP -->
+          <div style="margin-bottom: 48px;">
+            <span class="cursive-accent">01. Artistry</span>
+            <h2 class="section-title" style="margin-bottom: 20px;">Makeup Services</h2>
+            <div class="grid-2-mobile" id="servicesMakeupGrid"></div>
+          </div>
+
+          <!-- Category 2: BEAUTY -->
+          <div style="margin-bottom: 48px;">
+            <span class="cursive-accent">02. Skin &amp; Care</span>
+            <h2 class="section-title" style="margin-bottom: 20px;">Beauty &amp; Parlour Rituals</h2>
+            <div class="grid-2-mobile" id="servicesBeautyGrid"></div>
+          </div>
+
+          <!-- Category 3: HAIR -->
+          <div>
+            <span class="cursive-accent">03. Crown &amp; Tresses</span>
+            <h2 class="section-title" style="margin-bottom: 20px;">Hair Care &amp; Styling</h2>
+            <div class="grid-2-mobile" id="servicesHairGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 3: BRIDAL MAKEUP
+         ======================================================================== -->
+    <section class="page-view" id="page-bridal" aria-label="Bridal Makeup">
+      <div class="hero" style="padding-top: 22px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+        </div>
+        <div class="container hero-grid">
+          <div class="hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?auto=format&fit=crop&w=900&q=80"
+              alt="Luxury Indian Bridal Transformation by Alafia"
+              width="900"
+              height="1125"
+              loading="lazy"
+            />
+          </div>
+          <div class="hero-content">
+            <span class="hero-badge">Luxury Bridal Atelier</span>
+            <h1 class="hero-title">Unforgettable Indian Bridal Artistry</h1>
+            <p class="hero-subtitle">
+              Your wedding day deserves perfection in every frame. Alafia crafts long-wearing, sweat-resistant, skin-enhancing bridal looks tailored to your outfit, jewellery, and lighting.
+            </p>
+            <div class="hero-actions">
+              <a href="#appointment" class="btn btn-primary" data-route="appointment" data-service="Bridal Makeup">Enquire Bridal Dates</a>
+              <a href="#gallery" class="btn btn-outline" data-route="gallery">View Bridal Lookbook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="cursive-accent">Bespoke Bridal Looks</span>
+            <h2 class="section-title">Signature Wedding &amp; Pre-Wedding Looks</h2>
+            <p class="section-subtitle">Contact for Pricing — customized bridal packages available for single events or complete wedding festivities.</p>
+          </div>
+
+          <div class="bridal-showcase-grid" id="bridalDetailedGrid"></div>
+
+          <div style="text-align: center; margin-top: 38px;">
+            <a href="#appointment" class="btn btn-primary" data-route="appointment" data-service="HD Bridal Makeup">Schedule Bridal Consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 4: ABOUT ALAFIA
+         ======================================================================== -->
+    <section class="page-view" id="page-about" aria-label="About Alafia">
+      <div class="section bg-blush-rich" style="padding-block: 28px 38px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+          <div style="text-align: center;">
+            <span class="cursive-accent">Founder &amp; Lead Artist</span>
+            <h1 class="section-title">“Beauty is an Art, and Every Woman is a Masterpiece.”</h1>
+            <p class="section-subtitle" style="margin-inline: auto;">
+              The story, passion, and craftsmanship behind ALAFIA BEAUTY &amp; BRIDAL STUDIO.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container about-grid">
+          <div class="about-portrait">
+            <img
+              src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=850&q=80"
+              alt="Alafia - Founder of Alafia Beauty & Bridal Studio"
+              width="850"
+              height="1062"
+              loading="lazy"
+            />
+          </div>
+
+          <div>
+            <span class="cursive-accent">About Alafia</span>
+            <h2 class="section-title">A Lifelong Passion for Beauty, Skincare &amp; Bridal Elegance</h2>
+            <p style="margin-bottom: 14px; color: var(--text-muted);">
+              For <strong>Alafia</strong>, beauty has never been about masking who you are—it is about illuminating your natural grace so you shine with quiet confidence. From an early love of color, skin health, and traditional aesthetics, she dedicated herself to mastering every facet of professional parlour and bridal artistry.
+            </p>
+            <p style="margin-bottom: 14px; color: var(--text-muted);">
+              Whether she is crafting a luminous HD bridal makeover, sculpting clean brows through gentle threading, performing deeply nourishing facials and hair spas, or creating delicate mehndi and nail art, Alafia brings patience, precision, and warmth to every single appointment.
+            </p>
+            <p style="margin-bottom: 18px; color: var(--text-muted);">
+              <strong>ALAFIA BEAUTY &amp; BRIDAL STUDIO</strong> is the realization of her dream: a serene, modern beauty sanctuary where hygiene, high-grade skin-safe products, and personalized one-on-one attention come first.
+            </p>
+
+            <div class="pillar-list">
+              <div class="pillar-item">
+                <div class="pillar-icon">✦</div>
+                <div>
+                  <h4>Complete Parlour Mastery</h4>
+                  <p>Skilled across bridal makeup, facials, waxing, threading, hair spa, nail art &amp; mehndi.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <div class="pillar-icon">✦</div>
+                <div>
+                  <h4>Skin-First Philosophy</h4>
+                  <p>Thorough skin prep and premium, hygienic tools for a radiant, irritation-free finish.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <div class="pillar-icon">✦</div>
+                <div>
+                  <h4>Bespoke Bridal Care</h4>
+                  <p>Tailored looks harmonized with your lehenga, jewellery, and wedding lighting.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <div class="pillar-icon">✦</div>
+                <div>
+                  <h4>Warm, Calm Studio</h4>
+                  <p>A welcoming, unhurried environment where every guest is treated like royalty.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="#appointment" class="btn btn-primary" data-route="appointment">Book a Session with Alafia</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 5: GALLERY
+         ======================================================================== -->
+    <section class="page-view" id="page-gallery" aria-label="Gallery">
+      <div class="section bg-blush-rich" style="padding-block: 28px 38px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+          <div style="text-align: center;">
+            <span class="cursive-accent">Curated Transformations</span>
+            <h1 class="section-title">Studio Lookbook &amp; Gallery</h1>
+            <p class="section-subtitle" style="margin-inline: auto;">
+              Filter by category and tap any photograph to open full-screen view.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="filter-bar" role="tablist" aria-label="Gallery Categories">
+            <button type="button" class="filter-btn active" data-filter="All">All</button>
+            <button type="button" class="filter-btn" data-filter="Bridal Makeup">Bridal Makeup</button>
+            <button type="button" class="filter-btn" data-filter="Party Makeup">Party Makeup</button>
+            <button type="button" class="filter-btn" data-filter="Engagement">Engagement</button>
+            <button type="button" class="filter-btn" data-filter="Hairstyle">Hairstyle</button>
+            <button type="button" class="filter-btn" data-filter="Beauty & Skincare">Beauty &amp; Skincare</button>
+          </div>
+
+          <div class="gallery-grid" id="fullGalleryGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 6: APPOINTMENT BOOKING
+         ======================================================================== -->
+    <section class="page-view" id="page-appointment" aria-label="Book Appointment">
+      <div class="section bg-blush-rich" style="padding-block: 28px 38px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+          <div style="text-align: center;">
+            <span class="cursive-accent">Reserve Your Visit</span>
+            <h1 class="section-title">Book an Appointment</h1>
+            <p class="section-subtitle" style="margin-inline: auto;">
+              Fill out your preferred service, date, and time below. You can also send your appointment enquiry directly to Alafia via Gmail.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="form-card">
+            <form id="bookingForm" novalidate>
+              <div class="form-grid">
+                <div class="form-group" id="groupName">
+                  <label for="custName" class="form-label">Customer Name *</label>
+                  <input type="text" id="custName" name="custName" class="form-control" placeholder="Enter your full name" required />
+                  <span class="error-msg">Please enter your full name.</span>
+                </div>
+
+                <div class="form-grid form-grid-2">
+                  <div class="form-group" id="groupPhone">
+                    <label for="custPhone" class="form-label">Phone / WhatsApp Number *</label>
+                    <input type="tel" id="custPhone" name="custPhone" class="form-control" placeholder="e.g. +91 98765 43210" required />
+                    <span class="error-msg">Please enter a valid phone number (at least 10 digits).</span>
+                  </div>
+
+                  <div class="form-group" id="groupEmail">
+                    <label for="custEmail" class="form-label">Email Address (Optional)</label>
+                    <input type="email" id="custEmail" name="custEmail" class="form-control" placeholder="you@example.com" />
+                    <span class="error-msg">Please enter a valid email address.</span>
+                  </div>
+                </div>
+
+                <div class="form-group" id="groupService">
+                  <label for="custService" class="form-label">Select Service *</label>
+                  <select id="custService" name="custService" class="form-control" required>
+                    <option value="">-- Choose a Service --</option>
+                    <optgroup label="Makeup Services">
+                      <option value="Bridal Makeup">Bridal Makeup</option>
+                      <option value="HD Bridal Makeup">HD Bridal Makeup</option>
+                      <option value="Engagement Makeup">Engagement Makeup</option>
+                      <option value="Reception Makeup">Reception Makeup</option>
+                      <option value="Party Makeup">Party Makeup</option>
+                      <option value="Natural Makeup">Natural Makeup</option>
+                      <option value="Festive Makeup">Festive Makeup</option>
+                      <option value="Wedding Guest Makeup">Wedding Guest Makeup</option>
+                    </optgroup>
+                    <optgroup label="Beauty & Parlour">
+                      <option value="Eyebrow Shaping">Eyebrow Shaping</option>
+                      <option value="Threading">Threading</option>
+                      <option value="Facial">Facial</option>
+                      <option value="Cleanup">Cleanup</option>
+                      <option value="Waxing">Waxing</option>
+                      <option value="Skincare">Skincare</option>
+                      <option value="Manicure">Manicure</option>
+                      <option value="Pedicure">Pedicure</option>
+                      <option value="Nail Art">Nail Art</option>
+                      <option value="Mehndi">Mehndi</option>
+                    </optgroup>
+                    <optgroup label="Hair Care & Styling">
+                      <option value="Bridal Hairstyling">Bridal Hairstyling</option>
+                      <option value="Party Hairstyling">Party Hairstyling</option>
+                      <option value="Hair Spa">Hair Spa</option>
+                      <option value="Hair Treatment">Hair Treatment</option>
+                      <option value="Hair Styling">Hair Styling</option>
+                    </optgroup>
+                  </select>
+                  <span class="error-msg">Please select a service.</span>
+                </div>
+
+                <div class="form-grid form-grid-2">
+                  <div class="form-group" id="groupDate">
+                    <label for="prefDate" class="form-label">Preferred Date *</label>
+                    <input type="date" id="prefDate" name="prefDate" class="form-control" required />
+                    <span class="error-msg">Please choose a preferred date.</span>
+                  </div>
+
+                  <div class="form-group" id="groupTime">
+                    <label for="prefTime" class="form-label">Preferred Time *</label>
+                    <select id="prefTime" name="prefTime" class="form-control" required>
+                      <option value="">-- Select Time Slot --</option>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="11:30 AM">11:30 AM</option>
+                      <option value="01:00 PM">01:00 PM</option>
+                      <option value="03:00 PM">03:00 PM</option>
+                      <option value="04:30 PM">04:30 PM</option>
+                      <option value="06:00 PM">06:00 PM</option>
+                    </select>
+                    <span class="error-msg">Please select a preferred time slot.</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="custMessage" class="form-label">Additional Message / Skin or Bridal Notes</label>
+                  <textarea id="custMessage" name="custMessage" class="form-control" placeholder="Tell Alafia about your event, skin type, or preferred look..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Submit Appointment Request</button>
+              </div>
+            </form>
+
+            <!-- Confirmation Message (Does NOT claim automatic confirmation) -->
+            <div class="confirmation-box" id="bookingConfirmation" role="status" aria-live="polite">
+              <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 6px;">Thank You! Your Request is Ready ✨</h3>
+              <p id="confirmationSummary" style="font-size: 0.92rem; margin-bottom: 14px;"></p>
+              <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 14px;">
+                Note: Appointments are finalized once our studio confirms slot availability. Tap below to send your enquiry directly to Alafia via Gmail:
+              </p>
+              <a href="mailto:alafiabeautystudio@gmail.com" id="gmailSendBtn" class="btn btn-outline btn-full" style="gap: 10px;">
+                <svg width="20" height="16" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+                  <path d="M1.636 18H5.455V8.727L0 4.636V16.364C0 17.269 0.734 18 1.636 18Z" fill="#4285F4"/>
+                  <path d="M18.545 18H22.364C23.269 18 24 17.266 24 16.364V4.636L18.545 8.727V18Z" fill="#34A853"/>
+                  <path d="M18.545 1.636V8.727L24 4.636V2.455C24 0.431 21.69 -0.723 20.073 0.491L18.545 1.636Z" fill="#FBBC04"/>
+                  <path d="M5.455 8.727V1.636L12 6.545L18.545 1.636V8.727L12 13.636L5.455 8.727Z" fill="#EA4335"/>
+                  <path d="M0 2.455V4.636L5.455 8.727V1.636L3.927 0.491C2.307 -0.723 0 0.431 0 2.455Z" fill="#C5221F"/>
+                </svg>
+                Send Enquiry via Gmail
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         PAGE 7: CONTACT
+         ======================================================================== -->
+    <section class="page-view" id="page-contact" aria-label="Contact">
+      <div class="section bg-blush-rich" style="padding-block: 28px 38px;">
+        <div class="container">
+          <div class="subpage-back-bar">
+            <button type="button" class="btn-back" data-back-btn aria-label="Go back to previous page">← Back</button>
+          </div>
+          <div style="text-align: center;">
+            <span class="cursive-accent">Get in Touch</span>
+            <h1 class="section-title">Visit or Message Our Studio</h1>
+            <p class="section-subtitle" style="margin-inline: auto;">
+              We would love to answer your bridal, skincare, or salon questions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container contact-layout">
+          <!-- Studio Contact Details (Easy-to-edit placeholders) -->
+          <div class="info-card">
+            <h2 style="font-family: var(--font-serif); font-size: 1.65rem; color: var(--burgundy);">Studio Details</h2>
+
+            <div class="info-row">
+              <div class="info-icon">📞</div>
+              <div>
+                <strong style="color: var(--burgundy); display: block;">Phone Number</strong>
+                <a href="tel:+916209911111" style="font-size: 0.92rem; color: var(--rose-gold-dark); font-weight: 600;">+91 6209911111</a>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon" style="background-color: var(--white); border: 1px solid var(--border-soft);">
+                <svg width="20" height="16" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+                  <path d="M1.636 18H5.455V8.727L0 4.636V16.364C0 17.269 0.734 18 1.636 18Z" fill="#4285F4"/>
+                  <path d="M18.545 18H22.364C23.269 18 24 17.266 24 16.364V4.636L18.545 8.727V18Z" fill="#34A853"/>
+                  <path d="M18.545 1.636V8.727L24 4.636V2.455C24 0.431 21.69 -0.723 20.073 0.491L18.545 1.636Z" fill="#FBBC04"/>
+                  <path d="M5.455 8.727V1.636L12 6.545L18.545 1.636V8.727L12 13.636L5.455 8.727Z" fill="#EA4335"/>
+                  <path d="M0 2.455V4.636L5.455 8.727V1.636L3.927 0.491C2.307 -0.723 0 0.431 0 2.455Z" fill="#C5221F"/>
+                </svg>
+              </div>
+              <div>
+                <strong style="color: var(--burgundy); display: block;">Gmail</strong>
+                <a href="mailto:alafiabeautystudio@gmail.com" style="font-size: 0.92rem; color: var(--rose-gold-dark); font-weight: 600;">alafiabeautystudio@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon">📍</div>
+              <div>
+                <strong style="color: var(--burgundy); display: block;">Studio Address</strong>
+                <span style="font-size: 0.92rem; color: var(--text-muted);">Proudly Serving Ramnagar (Harinagar), Bihar, India.</span>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon">📸</div>
+              <div>
+                <strong style="color: var(--burgundy); display: block;">Social Channels</strong>
+                <span style="font-size: 0.92rem; color: var(--text-muted);">
+                  Instagram: <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style="color: var(--rose-gold-dark); font-weight: 600;">@alafiabeautystudio</a><br />
+                  Facebook: <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style="color: var(--rose-gold-dark); font-weight: 600;">Alafia Beauty &amp; Bridal Studio</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="map-placeholder">
+              <strong>🗺️ Google Maps Location Placeholder</strong>
+              <p style="font-size: 0.84rem; margin-top: 6px;">Embed your Google Maps iframe here when your studio address is finalized.</p>
+            </div>
+          </div>
+
+          <!-- Quick Contact Message Form -->
+          <div class="form-card" style="margin: 0; max-width: 100%;">
+            <h2 style="font-family: var(--font-serif); font-size: 1.65rem; color: var(--burgundy); margin-bottom: 16px;">Send a Quick Message</h2>
+            <form id="contactForm" novalidate>
+              <div class="form-grid">
+                <div class="form-group" id="cGroupName">
+                  <label for="cName" class="form-label">Your Name *</label>
+                  <input type="text" id="cName" class="form-control" placeholder="Enter your name" required />
+                  <span class="error-msg">Please enter your name.</span>
+                </div>
+
+                <div class="form-group" id="cGroupPhone">
+                  <label for="cPhone" class="form-label">Phone or Email *</label>
+                  <input type="text" id="cPhone" class="form-control" placeholder="Enter your phone or email" required />
+                  <span class="error-msg">Please provide a contact phone or email.</span>
+                </div>
+
+                <div class="form-group" id="cGroupMsg">
+                  <label for="cMessage" class="form-label">Your Enquiry *</label>
+                  <textarea id="cMessage" class="form-control" placeholder="Ask about bridal dates, facial packages, or hair treatments..." required></textarea>
+                  <span class="error-msg">Please write a brief message.</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+              </div>
+            </form>
+
+            <div class="confirmation-box" id="contactConfirmation" role="status" aria-live="polite">
+              <strong>Message Received! ✨</strong>
+              <p style="font-size: 0.9rem; margin-top: 4px;">Thank you for reaching out to ALAFIA BEAUTY &amp; BRIDAL STUDIO. Alafia will get back to you shortly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal for Gallery -->
+  <div class="lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image Preview">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image preview">&times;</button>
+      <img id="lightboxImg" src="" alt="" />
+      <div class="lightbox-meta">
+        <div>
+          <span class="service-tag" id="lightboxCategory">Category</span>
+          <h3 id="lightboxTitle" style="font-family: var(--font-serif); color: var(--burgundy); font-size: 1.25rem;">Title</h3>
+        </div>
+        <a href="#appointment" class="btn btn-primary btn-card" style="width: auto;" id="lightboxBookBtn">Book Look</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- One-Hand Floating Gmail Button -->
+  <a
+    href="mailto:alafiabeautystudio@gmail.com?subject=Appointment%20Enquiry%20-%20ALAFIA%20BEAUTY%20%26%20BRIDAL%20STUDIO&body=Hello%20Alafia%20Beauty%20%26%20Bridal%20Studio!%0A%0AI%20would%20like%20to%20enquire%20about%20an%20appointment."
+    class="floating-gmail"
+    aria-label="Contact Alafia Beauty & Bridal Studio on Gmail"
+  >
+    <svg width="20" height="16" viewBox="0 0 24 18" fill="none" aria-hidden="true">
+      <path d="M1.636 18H5.455V8.727L0 4.636V16.364C0 17.269 0.734 18 1.636 18Z" fill="#4285F4"/>
+      <path d="M18.545 18H22.364C23.269 18 24 17.266 24 16.364V4.636L18.545 8.727V18Z" fill="#34A853"/>
+      <path d="M18.545 1.636V8.727L24 4.636V2.455C24 0.431 21.69 -0.723 20.073 0.491L18.545 1.636Z" fill="#FBBC04"/>
+      <path d="M5.455 8.727V1.636L12 6.545L18.545 1.636V8.727L12 13.636L5.455 8.727Z" fill="#EA4335"/>
+      <path d="M0 2.455V4.636L5.455 8.727V1.636L3.927 0.491C2.307 -0.723 0 0.431 0 2.455Z" fill="#C5221F"/>
+    </svg>
+    <span>Gmail</span>
+  </a>
+
+  <!-- Luxury Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">ALAFIA BEAUTY &amp; BRIDAL STUDIO</h3>
+          <p style="font-family: var(--font-cursive); font-size: 1.65rem; color: var(--champagne); margin-bottom: 8px;">
+            Where Beauty Meets Elegance.
+          </p>
+          <p style="font-size: 0.9rem; color: rgba(255,249,244,0.82); max-width: 340px;">
+            Bespoke bridal transformations, radiant skincare, and complete parlour luxury crafted with love by Alafia.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-route="home">Home</a></li>
+            <li><a href="#services" data-route="services">All Salon Services</a></li>
+            <li><a href="#bridal" data-route="bridal">Bridal Makeup</a></li>
+            <li><a href="#about" data-route="about">About Alafia</a></li>
+            <li><a href="#gallery" data-route="gallery">Portfolio Gallery</a></li>
+            <li><a href="#appointment" data-route="appointment">Book Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Studio Hours &amp; Connect</h4>
+          <ul class="footer-links">
+            <li>Tuesday – Sunday: 10:00 AM – 7:30 PM</li>
+            <li>Monday: By Bridal Appointment</li>
+            <li>Gmail: <a href="mailto:alafiabeautystudio@gmail.com">alafiabeautystudio@gmail.com</a></li>
+            <li><a href="#contact" data-route="contact">Contact &amp; Location →</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="currentYear"></span> ALAFIA BEAUTY &amp; BRIDAL STUDIO. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       CONFIGURATION & DATA (EASY TO EDIT)
+       ========================================================================== */
+    const STUDIO_CONFIG = {
+      email: "alafiabeautystudio@gmail.com",
+      whatsappNumber: "916209911111",
+      studioName: "ALAFIA BEAUTY & BRIDAL STUDIO"
+    };
+
+    // High-detail embedded Bridal Mandala Mehndi artwork (never breaks offline or online)
+    const BRIDAL_MEHNDI_ART = "data:image/svg+xml;utf8," + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750">
+        <defs>
+          <radialGradient id="fabricBg" cx="50%" cy="45%" r="65%">
+            <stop offset="0%" stop-color="#E5DDD7"/>
+            <stop offset="55%" stop-color="#CFC5BD"/>
+            <stop offset="100%" stop-color="#B6A89E"/>
+          </radialGradient>
+          <linearGradient id="skinTone" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F6D7C3"/>
+            <stop offset="55%" stop-color="#EBC2AA"/>
+            <stop offset="100%" stop-color="#DDA98E"/>
+          </linearGradient>
+          <linearGradient id="skinShade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#E7BBA2"/>
+            <stop offset="100%" stop-color="#D49B7F"/>
+          </linearGradient>
+          <radialGradient id="hennaStain" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#5E1914"/>
+            <stop offset="75%" stop-color="#78231B"/>
+            <stop offset="100%" stop-color="#4A120E"/>
+          </radialGradient>
+          <linearGradient id="goldTone" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F5DFB0"/>
+            <stop offset="50%" stop-color="#C99B52"/>
+            <stop offset="100%" stop-color="#8C6226"/>
+          </linearGradient>
+          <radialGradient id="roseStone" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#FFF5F7"/>
+            <stop offset="55%" stop-color="#F2CFD7"/>
+            <stop offset="100%" stop-color="#C98E9B"/>
+          </radialGradient>
+          <pattern id="embroidery" width="48" height="48" patternUnits="userSpaceOnUse">
+            <circle cx="24" cy="24" r="14" fill="none" stroke="#EFE6DD" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.75"/>
+            <circle cx="24" cy="24" r="5" fill="#B8986A" opacity="0.45"/>
+            <path d="M24 4 L27 12 L24 10 L21 12 Z M24 44 L27 36 L24 38 L21 36 Z M4 24 L12 21 L10 24 L12 27 Z M44 24 L36 21 L38 24 L36 27 Z" fill="#F7EFE7" opacity="0.7"/>
+          </pattern>
+          <filter id="softShadow" x="-15%" y="-15%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#3B241E" flood-opacity="0.24"/>
+          </filter>
+        </defs>
+
+        <!-- Embroidered Bridal Lehenga Background -->
+        <rect width="600" height="750" fill="url(#fabricBg)"/>
+        <rect width="600" height="750" fill="url(#embroidery)"/>
+
+        <!-- LOWER HAND (Vertical Bridal Hand) -->
+        <g filter="url(#softShadow)">
+          <!-- Wrist & Palm -->
+          <path d="M250 250 C235 310, 210 365, 195 435 C182 485, 165 535, 148 575 C144 585, 156 593, 165 583 C186 555, 206 508, 224 468 L212 635 C210 652, 227 655, 232 638 L258 485 L254 672 C253 692, 272 693, 276 673 L296 492 L302 654 C303 672, 321 671, 322 652 L332 488 L352 604 C356 620, 372 616, 370 598 L368 445 C376 385, 392 315, 405 260 Z" fill="url(#skinTone)"/>
+
+          <!-- Lower Hand Center Mandala -->
+          <g transform="translate(295, 382)" fill="url(#hennaStain)" stroke="#5E1914">
+            <circle cx="0" cy="0" r="10" stroke="none"/>
+            <circle cx="0" cy="0" r="18" fill="none" stroke-width="2.2"/>
+            <circle cx="0" cy="0" r="30" fill="none" stroke-width="3" stroke-dasharray="5 3"/>
+            <circle cx="0" cy="0" r="42" fill="none" stroke-width="2"/>
+            <circle cx="0" cy="0" r="56" fill="none" stroke-width="2.6" stroke-dasharray="3 4"/>
+            <!-- Inner Scallops -->
+            <g stroke-width="1.5">
+              <path d="M0,-42 Q8,-52 16,-40 Q26,-47 30,-33 Q42,-36 40,-22 Q51,-20 44,-8 Q53,0 44,8 Q51,20 40,22 Q42,36 30,33 Q26,47 16,40 Q8,52 0,42 Q-8,52 -16,40 Q-26,47 -30,33 Q-42,36 -40,22 Q-51,20 -44,8 Q-53,0 -44,-8 Q-51,-20 -40,-22 Q-42,-36 -30,-33 Q-26,-47 -16,-40 Q-8,-52 0,-42 Z" fill="none" stroke-width="2.4"/>
+              <path d="M0,-58 L5,-70 L0,-66 L-5,-70 Z M41,-41 L53,-46 L48,-41 L53,-36 Z M58,0 L70,5 L66,0 L70,-5 Z M41,41 L46,53 L41,48 L36,53 Z M0,58 L-5,70 L0,66 L5,70 Z M-41,41 L-53,46 L-48,41 L-53,36 Z M-58,0 L-70,-5 L-66,0 L-70,5 Z M-41,-41 L-46,-53 L-41,-48 L-36,-53 Z" stroke="none"/>
+            </g>
+          </g>
+
+          <!-- Lower Hand Finger Henna Caps & Lace Bands -->
+          <g fill="url(#hennaStain)">
+            <!-- Thumb cap -->
+            <path d="M192 442 C175 488, 160 532, 148 575 C145 584, 156 591, 164 582 C179 554, 194 512, 206 476 C198 468, 194 456, 192 442 Z"/>
+            <!-- Index Finger -->
+            <path d="M219 528 L239 532 L231 638 C227 654, 211 651, 213 635 Z"/>
+            <rect x="218" y="504" width="24" height="10" rx="4" transform="rotate(6 230 509)"/>
+            <!-- Middle Finger -->
+            <path d="M256 558 L279 560 L275 672 C271 691, 254 690, 255 671 Z"/>
+            <rect x="256" y="534" width="25" height="10" rx="4"/>
+            <!-- Ring Finger -->
+            <path d="M300 546 L323 545 L321 651 C320 669, 304 670, 303 652 Z"/>
+            <rect x="299" y="522" width="25" height="10" rx="4"/>
+            <!-- Pinky Finger -->
+            <path d="M343 514 L365 510 L369 597 C371 614, 356 618, 352 603 Z"/>
+          </g>
+
+          <!-- Pastel Pink Nails (Lower Hand) -->
+          <path d="M215 628 C215 648, 227 648, 229 629 C224 625, 219 625, 215 628 Z" fill="#F7D5DC"/>
+          <path d="M258 662 C258 685, 271 685, 273 663 C268 659, 262 659, 258 662 Z" fill="#F7D5DC"/>
+          <path d="M305 643 C305 664, 318 664, 319 644 C314 640, 309 640, 305 643 Z" fill="#F7D5DC"/>
+          <path d="M354 595 C355 612, 366 611, 367 594 C362 591, 358 591, 354 595 Z" fill="#F7D5DC"/>
+
+          <!-- Gold & Diamond Ring on Lower Hand -->
+          <ellipse cx="268" cy="542" rx="14" ry="5" fill="none" stroke="url(#goldTone)" stroke-width="4.5"/>
+          <circle cx="268" cy="542" r="8.5" fill="url(#goldTone)" stroke="#FFF6E0" stroke-width="1.5"/>
+          <circle cx="268" cy="542" r="5" fill="#E3B36B"/>
+        </g>
+
+        <!-- UPPER HAND (Horizontal Resting Hand with Bracelet & Rose Ring) -->
+        <g filter="url(#softShadow)">
+          <!-- Sleeve Lace Cuff -->
+          <path d="M0 45 C55 48, 105 56, 145 72 L115 215 C75 202, 35 198, 0 198 Z" fill="#DED4CC" stroke="#F8F1EB" stroke-width="2"/>
+          <!-- Upper Hand & Fingers -->
+          <path d="M126 78 C178 72, 232 54, 292 52 C345 50, 398 74, 442 96 C458 104, 454 120, 436 118 C402 112, 368 104, 336 102 L494 148 C514 154, 510 174, 490 171 L344 144 L518 192 C538 198, 534 218, 513 215 L344 184 L496 226 C514 232, 510 250, 490 247 L332 218 L446 248 C462 253, 458 269, 440 266 L290 242 C230 232, 165 214, 112 195 Z" fill="url(#skinTone)"/>
+
+          <!-- Upper Hand Center Mandala -->
+          <g transform="translate(238, 146)" fill="url(#hennaStain)" stroke="#5E1914">
+            <circle cx="0" cy="0" r="12" stroke="none"/>
+            <circle cx="0" cy="0" r="21" fill="none" stroke-width="2.5"/>
+            <circle cx="0" cy="0" r="34" fill="none" stroke-width="3.5" stroke-dasharray="6 3"/>
+            <circle cx="0" cy="0" r="48" fill="none" stroke-width="2.2"/>
+            <circle cx="0" cy="0" r="64" fill="none" stroke-width="2.8" stroke-dasharray="3 4"/>
+            <path d="M0,-48 Q9,-59 18,-46 Q30,-54 34,-38 Q48,-41 46,-25 Q58,-23 50,-9 Q61,0 50,9 Q58,23 46,25 Q48,41 34,38 Q30,54 18,46 Q9,59 0,48 Q-9,59 -18,46 Q-30,54 -34,38 Q-48,41 -46,25 Q-58,23 -50,9 Q-61,0 -50,-9 Q-58,-23 -46,-25 Q-48,-41 -34,-38 Q-30,-54 -18,-46 Q-9,-59 0,-48 Z" fill="none" stroke-width="2.6"/>
+            <path d="M0,-66 L6,-80 L0,-75 L-6,-80 Z M47,-47 L61,-53 L55,-47 L61,-41 Z M66,0 L80,6 L75,0 L80,-6 Z M47,47 L53,61 L47,55 L41,61 Z M0,66 L-6,80 L0,75 L6,80 Z M-47,47 L-61,53 L-55,47 L-61,41 Z M-66,0 L-80,-6 L-75,0 L-80,6 Z M-47,-47 L-53,-61 L-47,-55 L-41,-61 Z" stroke="none"/>
+          </g>
+
+          <!-- Upper Hand Finger Henna Caps -->
+          <g fill="url(#hennaStain)">
+            <!-- Thumb -->
+            <path d="M308 53 C352 54, 402 74, 442 96 C455 103, 452 117, 437 116 C404 110, 366 101, 336 98 C332 82, 322 66, 308 53 Z"/>
+            <!-- Index Finger -->
+            <path d="M402 121 L494 148 C512 154, 509 172, 490 170 L396 151 Z"/>
+            <!-- Middle Finger -->
+            <path d="M424 166 L518 192 C536 198, 533 216, 513 214 L419 196 Z"/>
+            <!-- Ring Finger -->
+            <path d="M412 203 L496 226 C512 231, 509 248, 490 246 L406 229 Z"/>
+            <!-- Pinky Finger -->
+            <path d="M376 230 L446 248 C460 253, 457 268, 440 265 L371 251 Z"/>
+          </g>
+
+          <!-- Pastel Pink Nails (Upper Hand) -->
+          <path d="M424 92 C446 100, 443 114, 421 108 C419 102, 420 96, 424 92 Z" fill="#F9DCE2"/>
+          <path d="M482 147 C505 154, 502 168, 479 163 C477 157, 478 151, 482 147 Z" fill="#F9DCE2"/>
+          <path d="M505 191 C529 198, 526 212, 502 207 C500 201, 501 195, 505 191 Z" fill="#F9DCE2"/>
+          <path d="M484 225 C505 231, 502 245, 481 240 C479 234, 480 229, 484 225 Z" fill="#F9DCE2"/>
+
+          <!-- Delicate Gold & Pearl Bracelet on Wrist -->
+          <path d="M148 68 C134 114, 124 158, 122 204" fill="none" stroke="url(#goldTone)" stroke-width="5"/>
+          <g fill="#FFF9F4" stroke="url(#goldTone)" stroke-width="1.8">
+            <circle cx="145" cy="80" r="6"/>
+            <circle cx="139" cy="105" r="6.5"/>
+            <circle cx="133" cy="131" r="6.5"/>
+            <circle cx="128" cy="157" r="6.5"/>
+            <circle cx="124" cy="183" r="6"/>
+          </g>
+
+          <!-- Statement Rose-Quartz & Gold Ring on Upper Index Finger -->
+          <ellipse cx="386" cy="134" rx="7" ry="18" transform="rotate(16 386 134)" fill="none" stroke="url(#goldTone)" stroke-width="5"/>
+          <circle cx="386" cy="134" r="17" fill="url(#goldTone)"/>
+          <circle cx="386" cy="134" r="13.5" fill="url(#roseStone)"/>
+        </g>
+      </svg>
+    `);
+
+    const SERVICES_DATA = [
+      // MAKEUP (8)
+      { category: "Makeup", name: "Bridal Makeup", featured: true, desc: "Timeless, radiant full-bridal artistry tailored to your wedding attire and rituals.", img: "https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "HD Bridal Makeup", featured: true, desc: "High-definition, camera-ready luminous skin finish designed for 4K wedding photography.", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Engagement Makeup", featured: false, desc: "Soft rose-gold shimmer and romantic glow ideal for ring ceremonies.", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Reception Makeup", featured: false, desc: "Sophisticated evening glamour with sculpted radiance and long-wear hold.", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Party Makeup", featured: true, desc: "Effortless, glowing makeover for cocktail nights, birthdays, and celebrations.", img: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Natural Makeup", featured: false, desc: "Dewy, skin-like minimalist beauty that enhances your everyday features.", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Festive Makeup", featured: false, desc: "Vibrant, graceful traditional glam for Eid, Diwali, and family festivities.", img: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=600&q=80" },
+      { category: "Makeup", name: "Wedding Guest Makeup", featured: false, desc: "Polished, photo-friendly elegance for bridesmaids and wedding family guests.", img: "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=600&q=80" },
+
+      // BEAUTY (10)
+      { category: "Beauty", name: "Eyebrow Shaping", featured: false, desc: "Precision brow mapping and shaping to frame your eyes harmoniously.", img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Threading", featured: false, desc: "Gentle, hygienic facial threading for smooth, clean contours.", img: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Facial", featured: true, desc: "Deep-nourishing luxury facials customized for hydration, brightening, and bridal prep.", img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Cleanup", featured: false, desc: "Refreshing pore-purifying skin cleanup for an instant healthy glow.", img: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Waxing", featured: false, desc: "Comfort-focused, skin-soothing waxing treatments using gentle formulas.", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Skincare", featured: false, desc: "Targeted pre-bridal and seasonal skin rituals for balanced, supple radiance.", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Manicure", featured: false, desc: "Relaxing hand soak, cuticle care, exfoliation, and glossy polish finish.", img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Pedicure", featured: false, desc: "Restorative foot spa ritual leaving feet soft, refreshed, and pampered.", img: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Nail Art", featured: false, desc: "Delicate bridal neutrals, French tips, and bespoke rose-gold nail artistry.", img: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80" },
+      { category: "Beauty", name: "Mehndi", featured: false, desc: "Intricate traditional and contemporary henna designs for brides and celebrations.", img: BRIDAL_MEHNDI_ART },
+
+      // HAIR (5)
+      { category: "Hair", name: "Bridal Hairstyling", featured: false, desc: "Ornate floral buns, textured waves, and dupatta-ready bridal hair architecture.", img: "https://images.unsplash.com/photo-1522337094846-8a818192de1f?auto=format&fit=crop&w=600&q=80" },
+      { category: "Hair", name: "Party Hairstyling", featured: false, desc: "Soft Hollywood curls, sleek ponytails, and romantic half-up styles.", img: "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80" },
+      { category: "Hair", name: "Hair Spa", featured: false, desc: "Deep-conditioning scalp massage and steam therapy for silky, frizz-free shine.", img: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80" },
+      { category: "Hair", name: "Hair Treatment", featured: false, desc: "Restorative nourishment for dry, dull, or heat-stressed hair strands.", img: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" },
+      { category: "Hair", name: "Hair Styling", featured: false, desc: "Voluminous blowouts, silk presses, and precision finishing for any day.", img: "https://images.unsplash.com/photo-1595475884562-073c30d45670?auto=format&fit=crop&w=600&q=80" }
+    ];
+
+    const BRIDAL_DETAILS = [
+      { title: "Traditional Indian Bridal Makeup", tag: "Heritage Classic", desc: "Rich bridal elegance featuring luminous golden-ivory base, defined kohl eyes, and timeless crimson or rose-berry lips.", img: "https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?auto=format&fit=crop&w=700&q=80" },
+      { title: "HD Bridal Makeup", tag: "Ultra-Refined Finish", desc: "Micro-diffused high-definition artistry that blurs texture while keeping your skin naturally radiant under studio lights.", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" },
+      { title: "Engagement Makeup", tag: "Romantic Pastel Glam", desc: "Soft champagne shimmer, fluttering lashes, and dewy blush tailored for pastel lehengas and gowns.", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" },
+      { title: "Reception Makeup", tag: "Evening Couture", desc: "Smoky rose-gold eyes, sculpted glow, and statement evening sophistication.", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=80" },
+      { title: "Modern Minimalist Bridal", tag: "Effortless Grace", desc: "Feather-light coverage, brushed brows, and monochromatic rose tones for intimate daytime weddings.", img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=700&q=80" },
+      { title: "Bridal Hairstyling & Dupatta Draping", tag: "Complete Finishing", desc: "Fresh mogra & rose floral updos paired with secure, graceful bridal dupatta setting.", img: "https://images.unsplash.com/photo-1522337094846-8a818192de1f?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    const GALLERY_DATA = [
+      { title: "Royal Crimson Bridal Look", category: "Bridal Makeup", img: "https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?auto=format&fit=crop&w=700&q=80" },
+      { title: "HD Luminous Bride", category: "Bridal Makeup", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" },
+      { title: "Rose-Gold Engagement Glam", category: "Engagement", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" },
+      { title: "Evening Reception Radiance", category: "Party Makeup", img: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=700&q=80" },
+      { title: "Floral Bridal Updo", category: "Hairstyle", img: "https://images.unsplash.com/photo-1522337094846-8a818192de1f?auto=format&fit=crop&w=700&q=80" },
+      { title: "Bridal Glow Facial Ritual", category: "Beauty & Skincare", img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80" },
+      { title: "Intricate Bridal Mehndi", category: "Beauty & Skincare", img: BRIDAL_MEHNDI_ART },
+      { title: "Soft Waves & Party Styling", category: "Hairstyle", img: "https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    /* ==========================================================================
+       RENDER DYNAMIC CARDS & GALLERY
+       ========================================================================== */
+    function createServiceCardHTML(service) {
+      return `
+        <article class="service-card">
+          <div class="service-card-img">
+            <img src="${service.img}" alt="${service.name} at Alafia Beauty & Bridal Studio" width="600" height="450" loading="lazy" />
+          </div>
+          <div class="service-card-body">
+            <div>
+              <span class="service-tag">${service.category}</span>
+              <h3 class="service-card-title">${service.name}</h3>
+              <p class="service-card-desc">${service.desc}</p>
+            </div>
+            <div class="service-card-footer">
+              <span class="pricing-badge">Contact for Pricing</span>
+              <a href="#appointment" class="btn btn-primary btn-card" data-route="appointment" data-service="${service.name}">Book Now</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderAllContent() {
+      // Featured on Home
+      const homeFeatured = document.getElementById("homeFeaturedGrid");
+      homeFeatured.innerHTML = SERVICES_DATA.filter(s => s.featured).map(createServiceCardHTML).join("");
+
+      // Services Page Categorized
+      document.getElementById("servicesMakeupGrid").innerHTML = SERVICES_DATA.filter(s => s.category === "Makeup").map(createServiceCardHTML).join("");
+      document.getElementById("servicesBeautyGrid").innerHTML = SERVICES_DATA.filter(s => s.category === "Beauty").map(createServiceCardHTML).join("");
+      document.getElementById("servicesHairGrid").innerHTML = SERVICES_DATA.filter(s => s.category === "Hair").map(createServiceCardHTML).join("");
+
+      // Bridal Page Detailed Grid
+      document.getElementById("bridalDetailedGrid").innerHTML = BRIDAL_DETAILS.map(item => `
+        <article class="bridal-look-card">
+          <div class="bridal-look-img">
+            <img src="${item.img}" alt="${item.title}" width="700" height="933" loading="lazy" />
+          </div>
+          <div class="bridal-look-info">
+            <span class="service-tag">${item.tag}</span>
+            <h3 class="service-card-title">${item.title}</h3>
+            <p class="service-card-desc" style="margin-bottom: 12px;">${item.desc}</p>
+            <div class="service-card-footer">
+              <span class="pricing-badge">Contact for Pricing</span>
+              <a href="#appointment" class="btn btn-primary btn-card" data-route="appointment" data-service="Bridal Makeup">Enquire Look</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      // Home Preview Gallery (First 4)
+      document.getElementById("homePreviewGallery").innerHTML = GALLERY_DATA.slice(0, 4).map((item, idx) => `
+        <div class="gallery-item" data-gallery-idx="${idx}" tabindex="0" role="button" aria-label="View ${item.title}">
+          <img src="${item.img}" alt="${item.title}" width="700" height="933" loading="lazy" />
+          <div class="gallery-caption">${item.title}</div>
+        </div>
+      `).join("");
+
+      // Full Gallery
+      document.getElementById("fullGalleryGrid").innerHTML = GALLERY_DATA.map((item, idx) => `
+        <div class="gallery-item" data-category="${item.category}" data-gallery-idx="${idx}" tabindex="0" role="button" aria-label="View ${item.title}">
+          <img src="${item.img}" alt="${item.title}" width="700" height="933" loading="lazy" />
+          <div class="gallery-caption">${item.title}</div>
+        </div>
+      `).join("");
+    }
+
+    /* ==========================================================================
+       MULTI-PAGE CLIENT-SIDE ROUTER, HISTORY STACK & MOBILE DRAWER NAVIGATION
+       ========================================================================== */
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+    const siteHeader = document.getElementById("siteHeader");
+    const navigationHistory = ["home"];
+    let currentRoute = "home";
+
+    function closeMobileMenu() {
+      mobileNavDrawer.classList.remove("open");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+    }
+
+    hamburgerBtn.addEventListener("click", () => {
+      const isOpen = mobileNavDrawer.classList.toggle("open");
+      hamburgerBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    function navigateTo(route, preselectService = "", isBack = false) {
+      const validRoutes = ["home", "services", "bridal", "about", "gallery", "appointment", "contact"];
+      const targetRoute = validRoutes.includes(route) ? route : "home";
+
+      if (!isBack && targetRoute !== currentRoute) {
+        navigationHistory.push(targetRoute);
+      }
+      currentRoute = targetRoute;
+
+      // Toggle views
+      document.querySelectorAll(".page-view").forEach(view => view.classList.remove("active"));
+      const activeView = document.getElementById(`page-${targetRoute}`);
+      if (activeView) activeView.classList.add("active");
+
+      // Update active nav links
+      document.querySelectorAll("[data-route]").forEach(link => {
+        if (link.classList.contains("desktop-nav-link") || link.classList.contains("mobile-nav-link")) {
+          link.classList.toggle("active", link.getAttribute("data-route") === targetRoute);
+        }
+      });
+
+      // Preselect service if triggered from a service card
+      if (targetRoute === "appointment" && preselectService) {
+        const selectEl = document.getElementById("custService");
+        if (selectEl) selectEl.value = preselectService;
+      }
+
+      closeMobileMenu();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (window.location.hash !== `#${targetRoute}`) {
+        history.replaceState(null, "", `#${targetRoute}`);
+      }
+    }
+
+    function navigateBack() {
+      if (navigationHistory.length > 1) {
+        navigationHistory.pop();
+        const prevRoute = navigationHistory[navigationHistory.length - 1] || "home";
+        navigateTo(prevRoute, "", true);
+      } else {
+        navigateTo("home", "", true);
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      const backTrigger = e.target.closest("[data-back-btn]");
+      if (backTrigger) {
+        e.preventDefault();
+        navigateBack();
+        return;
+      }
+
+      const routeTrigger = e.target.closest("[data-route]");
+      if (routeTrigger) {
+        e.preventDefault();
+        const route = routeTrigger.getAttribute("data-route");
+        const service = routeTrigger.getAttribute("data-service") || "";
+        navigateTo(route, service);
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      const hashRoute = window.location.hash.replace("#", "");
+      if (hashRoute) navigateTo(hashRoute);
+    });
+
+    window.addEventListener("scroll", () => {
+      siteHeader.classList.toggle("scrolled", window.scrollY > 12);
+    }, { passive: true });
+
+    /* ==========================================================================
+       GALLERY CATEGORY FILTER & LIGHTBOX
+       ========================================================================== */
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.getAttribute("data-filter");
+        document.querySelectorAll("#fullGalleryGrid .gallery-item").forEach(item => {
+          const cat = item.getAttribute("data-category");
+          item.classList.toggle("hidden", filter !== "All" && cat !== filter);
+        });
+      });
+    });
+
+    const lightbox = document.getElementById("galleryLightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxCategory = document.getElementById("lightboxCategory");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxBookBtn = document.getElementById("lightboxBookBtn");
+
+    function openLightbox(idx) {
+      const item = GALLERY_DATA[idx];
+      if (!item) return;
+      lightboxImg.src = item.img;
+      lightboxImg.alt = item.title;
+      lightboxTitle.textContent = item.title;
+      lightboxCategory.textContent = item.category;
+      lightboxBookBtn.setAttribute("data-service", item.category === "Hairstyle" ? "Bridal Hairstyling" : "Bridal Makeup");
+      lightbox.classList.add("open");
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+    }
+
+    document.addEventListener("click", (e) => {
+      const galleryCard = e.target.closest(".gallery-item");
+      if (galleryCard) {
+        openLightbox(Number(galleryCard.getAttribute("data-gallery-idx")));
+      }
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
+    if (lightboxBookBtn) lightboxBookBtn.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLightbox();
+        closeMobileMenu();
+      }
+    });
+
+    /* ==========================================================================
+       APPOINTMENT BOOKING & CONTACT FORM VALIDATION + WHATSAPP INTEGRATION
+       ========================================================================== */
+    const prefDateInput = document.getElementById("prefDate");
+    if (prefDateInput) {
+      const todayISO = new Date().toISOString().split("T")[0];
+      prefDateInput.setAttribute("min", todayISO);
+    }
+
+    const bookingForm = document.getElementById("bookingForm");
+    bookingForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      const nameVal = document.getElementById("custName").value.trim();
+      const phoneVal = document.getElementById("custPhone").value.trim();
+      const emailVal = document.getElementById("custEmail").value.trim();
+      const serviceVal = document.getElementById("custService").value;
+      const dateVal = document.getElementById("prefDate").value;
+      const timeVal = document.getElementById("prefTime").value;
+      const msgVal = document.getElementById("custMessage").value.trim();
+
+      // Validate Name
+      document.getElementById("groupName").classList.toggle("has-error", nameVal.length < 2);
+      if (nameVal.length < 2) isValid = false;
+
+      // Validate Phone (at least 10 digits)
+      const digitsOnly = phoneVal.replace(/\D/g, "");
+      document.getElementById("groupPhone").classList.toggle("has-error", digitsOnly.length < 10);
+      if (digitsOnly.length < 10) isValid = false;
+
+      // Validate optional Email
+      const emailValid = !emailVal || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+      document.getElementById("groupEmail").classList.toggle("has-error", !emailValid);
+      if (!emailValid) isValid = false;
+
+      // Validate Service
+      document.getElementById("groupService").classList.toggle("has-error", !serviceVal);
+      if (!serviceVal) isValid = false;
+
+      // Validate Date
+      document.getElementById("groupDate").classList.toggle("has-error", !dateVal);
+      if (!dateVal) isValid = false;
+
+      // Validate Time
+      document.getElementById("groupTime").classList.toggle("has-error", !timeVal);
+      if (!timeVal) isValid = false;
+
+      if (!isValid) return;
+
+      const summaryText = `Name: ${nameVal} | Service: ${serviceVal} | Date: ${dateVal} at ${timeVal}`;
+      document.getElementById("confirmationSummary").textContent = summaryText;
+
+      const mailSubject = encodeURIComponent(`Appointment Request: ${serviceVal} - ${nameVal}`);
+      const mailBody = encodeURIComponent(
+        `Hello ${STUDIO_CONFIG.studioName}!\n\n` +
+        `I would like to request an appointment:\n` +
+        `• Name: ${nameVal}\n` +
+        `• Phone: ${phoneVal}\n` +
+        (emailVal ? `• Email: ${emailVal}\n` : "") +
+        `• Service: ${serviceVal}\n` +
+        `• Preferred Date: ${dateVal}\n` +
+        `• Preferred Time: ${timeVal}\n` +
+        (msgVal ? `• Notes: ${msgVal}\n` : "")
+      );
+
+      const gmailBtn = document.getElementById("gmailSendBtn");
+      gmailBtn.href = `mailto:${STUDIO_CONFIG.email}?subject=${mailSubject}&body=${mailBody}`;
+
+      const confirmBox = document.getElementById("bookingConfirmation");
+      confirmBox.classList.add("show");
+      confirmBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    // Contact Form Validation & Direct Gmail Launch
+    const contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const cName = document.getElementById("cName").value.trim();
+      const cPhone = document.getElementById("cPhone").value.trim();
+      const cMsg = document.getElementById("cMessage").value.trim();
+
+      let valid = true;
+      document.getElementById("cGroupName").classList.toggle("has-error", cName.length < 2);
+      if (cName.length < 2) valid = false;
+
+      document.getElementById("cGroupPhone").classList.toggle("has-error", cPhone.length < 5);
+      if (cPhone.length < 5) valid = false;
+
+      document.getElementById("cGroupMsg").classList.toggle("has-error", cMsg.length < 5);
+      if (cMsg.length < 5) valid = false;
+
+      if (!valid) return;
+
+      const cSubject = encodeURIComponent(`Studio Enquiry from ${cName}`);
+      const cBody = encodeURIComponent(
+        `Hello ${STUDIO_CONFIG.studioName},\n\n` +
+        `Name: ${cName}\n` +
+        `Contact: ${cPhone}\n\n` +
+        `Message:\n${cMsg}`
+      );
+      window.location.href = `mailto:${STUDIO_CONFIG.email}?subject=${cSubject}&body=${cBody}`;
+
+      document.getElementById("contactConfirmation").classList.add("show");
+      contactForm.reset();
+    });
+
+    /* ==========================================================================
+       CUSTOM ROSE-GOLD CIRCULAR CURSOR & TOUCH RIPPLE EFFECT
+       ========================================================================== */
+    const customCursor = document.getElementById("customCursor");
+    const cursorRing = document.getElementById("cursorRing");
+
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        customCursor.style.opacity = "1";
+        cursorRing.style.opacity = "1";
+        customCursor.style.left = `${mouseX}px`;
+        customCursor.style.top = `${mouseY}px`;
+      }, { passive: true });
+
+      function animateCursorRing() {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        cursorRing.style.left = `${ringX}px`;
+        cursorRing.style.top = `${ringY}px`;
+        requestAnimationFrame(animateCursorRing);
+      }
+      requestAnimationFrame(animateCursorRing);
+
+      document.addEventListener("mouseover", (e) => {
+        if (e.target.closest("a, button, .gallery-item, input, select, textarea")) {
+          cursorRing.classList.add("hover-active");
+        }
+      });
+
+      document.addEventListener("mouseout", (e) => {
+        if (e.target.closest("a, button, .gallery-item, input, select, textarea")) {
+          cursorRing.classList.remove("hover-active");
+        }
+      });
+    }
+
+    // Rose-gold circular ripple on click / mobile tap
+    document.addEventListener("pointerdown", (e) => {
+      const ripple = document.createElement("span");
+      ripple.className = "touch-ripple";
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      document.body.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove());
+    }, { passive: true });
+
+    /* ==========================================================================
+       INITIALIZE ON LOAD
+       ========================================================================== */
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+    renderAllContent();
+
+    const initialHash = window.location.hash.replace("#", "");
+    if (initialHash) {
+      navigateTo(initialHash);
+    }
+  </script>
+</body>
+</html>
